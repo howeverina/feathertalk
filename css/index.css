@@ -1,0 +1,82 @@
+@font-face {
+    font-family: 'Aggro';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/SBAggroL.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Aggro';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/SBAggroB.woff') format('woff');
+    font-weight: 700;
+    font-style: normal;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Aggro';
+    font-size: 18px;
+    line-height: 1.8;
+    background-color: #eee;
+    margin: 0;
+    padding: 0;
+}
+
+#navbar {
+    background-color: #00eaff;
+    color: white;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 3rem;
+    width: 100vw;
+}
+
+#logo h2 {
+    margin-top: 0.4rem;
+    text-align: center;
+}
+
+#wrapper {
+    margin: 5rem auto;
+    width: 100%;
+    max-width: 768px;
+}
+
+#wrapper > div {
+    padding: 10px;
+    background-color: white;
+    border-radius: 10px;
+    margin-bottom: 1rem;
+}
+
+#gotolive {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+input {
+    padding: 4px;
+    border-radius: 5px;
+    border: 1px solid #eee;
+}
+
+.button {
+    width: 100px;
+    min-width: 100px;
+    text-align: center;
+    padding: 7px;
+    background-color: #00eaff;
+    color: white;
+    border-radius: 10px;
+    text-decoration-line: none;
+}
+
+a {
+    text-decoration: none;
+    color: #00eaff;
+}
