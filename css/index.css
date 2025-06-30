@@ -1,13 +1,14 @@
+
 @font-face {
-    font-family: 'Aggro';
-    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/SBAggroL.woff') format('woff');
-    font-weight: normal;
+    font-family: 'Pretendard';
+    src: url('https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+    font-weight: 400;
     font-style: normal;
 }
 
 @font-face {
-    font-family: 'Aggro';
-    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/SBAggroB.woff') format('woff');
+    font-family: 'Pretendard';
+    src: url('https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Bold.woff') format('woff');
     font-weight: 700;
     font-style: normal;
 }
@@ -17,16 +18,17 @@
 }
 
 body {
-    font-family: 'Aggro';
-    font-size: 18px;
+    font-family: 'Pretendard';
+    font-size: 16px;
     line-height: 1.8;
     background-color: #eee;
+    color: #444;
     margin: 0;
     padding: 0;
 }
 
 #navbar {
-    background-color: #00eaff;
+    background-color: #86D7FF;
     color: white;
     position: fixed;
     top: 0;
@@ -36,14 +38,14 @@ body {
 }
 
 #logo h2 {
-    margin-top: 0.4rem;
+    margin-top: 0.3rem;
     text-align: center;
 }
 
 #wrapper {
     margin: 5rem auto;
     width: 100%;
-    max-width: 768px;
+    max-width: 1000px;
 }
 
 #wrapper > div {
@@ -56,13 +58,27 @@ body {
 #gotolive {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 5px;
+}
+
+#form1 {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    row-gap: 15px;
+    column-gap: 10px;
+}
+
+#form1 > div > img {
+    width: 100%;
+    border-radius: 10px;
+    border: 1px solid #eee;
 }
 
 input {
     padding: 4px;
-    border-radius: 5px;
+    border-radius: 10px;
     border: 1px solid #eee;
+    width: 100%;
 }
 
 .button {
@@ -70,13 +86,19 @@ input {
     min-width: 100px;
     text-align: center;
     padding: 7px;
-    background-color: #00eaff;
+    background-color: #86D7FF;
     color: white;
     border-radius: 10px;
     text-decoration-line: none;
+    font-weight: 700;
 }
 
 a {
     text-decoration: none;
-    color: #00eaff;
+    color: #86D7FF;
+}
+
+ul, .small {
+    font-size: 0.8em;
+    color: #ccc;
 }

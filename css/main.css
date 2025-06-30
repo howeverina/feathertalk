@@ -1,22 +1,24 @@
+
 @font-face {
-    font-family: 'Aggro';
-    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/SBAggroL.woff') format('woff');
-    font-weight: normal;
+    font-family: 'Pretendard';
+    src: url('https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+    font-weight: 400;
     font-style: normal;
 }
 
 @font-face {
-    font-family: 'Aggro';
-    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/SBAggroB.woff') format('woff');
+    font-family: 'Pretendard';
+    src: url('https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Bold.woff') format('woff');
     font-weight: 700;
     font-style: normal;
 }
 
 body {
-    font-family: 'Aggro';
+    font-family: 'Pretendard';
     height: 100dvh;
     width: 100vw;
     background-color: #00ff00;
+    color: #444;
 }
 
 #character {
@@ -89,4 +91,43 @@ body {
 
 #back {
     z-index: 94;
+}
+
+
+input {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 10px;
+  background: #fff;
+  outline: none;
+  opacity: 1;
+  border-radius: 5px;
+}
+
+input::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  background: #444;
+  cursor: pointer;
+  border: 0;
+  border-radius: 10px;
+}
+
+input::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  border-radius: 10px;
+  background: #444;
+  cursor: pointer;
+  border: 0;
+}
+
+.reverseInput{
+   -webkit-transform: rotateY(180deg);
+   -moz-transform: rotateY(180deg);
+   -ms-transform: rotateY(180deg);
+   -o-transform: rotateY(180deg);
+   transform: rotateY(180deg);
 }
