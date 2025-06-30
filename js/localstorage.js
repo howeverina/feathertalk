@@ -1,33 +1,49 @@
 if (localStorage.getItem('ftBang')) {
     document.querySelector('#bang_img').setAttribute('src', localStorage.getItem('ftBang'))
+} else {
+    document.querySelector('#bang_img').setAttribute('src', 'assets/bang.png')
 }
 
 if (localStorage.getItem('ftEyes')) {
     document.querySelector('#eyes_img').setAttribute('src', localStorage.getItem('ftEyes'))
+} else {
+    document.querySelector('#eyes_img').setAttribute('src', 'assets/eyes.png')
 }
 
 if (localStorage.getItem('ftEyesClosed')) {
     document.querySelector('#eyesclosed_img').setAttribute('src', localStorage.getItem('ftEyesClosed'))
+} else {
+    document.querySelector('#eyesclosed_img').setAttribute('src', 'assets/eyesclosed.png')
 }
 
 if (localStorage.getItem('ftMouth')) {
     document.querySelector('#mouth_img').setAttribute('src', localStorage.getItem('ftMouth'))
+} else {
+    document.querySelector('#mouth_img').setAttribute('src', 'assets/mouth.png')
 }
 
 if (localStorage.getItem('ftMouthOpen')) {
     document.querySelector('#mouthopen_img').setAttribute('src', localStorage.getItem('ftMouthOpen'))
+} else {
+    document.querySelector('#mouthopen_img').setAttribute('src', 'assets/mouthopen.png')
 }
 
 if (localStorage.getItem('ftFace')) {
     document.querySelector('#face_img').setAttribute('src', localStorage.getItem('ftFace'))
+} else {
+    document.querySelector('#face_img').setAttribute('src', 'assets/face.png')
 }
 
 if (localStorage.getItem('ftBody')) {
     document.querySelector('#body_img').setAttribute('src', localStorage.getItem('ftBody'))
+} else {
+    document.querySelector('#body_img').setAttribute('src', 'assets/body.png')
 }
 
 if (localStorage.getItem('ftBack')) {
     document.querySelector('#back_img').setAttribute('src', localStorage.getItem('ftBack'))
+} else {
+    document.querySelector('#back_img').setAttribute('src', 'assets/back.png')
 }
 
 document.querySelector('#bang').addEventListener('input', function(e) {
