@@ -1,3 +1,35 @@
+if (localStorage.getItem('ftBang')) {
+    document.querySelector('#bang_img').setAttribute('src', localStorage.getItem('ftBang'))
+}
+
+if (localStorage.getItem('ftEyes')) {
+    document.querySelector('#eyes_img').setAttribute('src', localStorage.getItem('ftEyes'))
+}
+
+if (localStorage.getItem('ftEyesClosed')) {
+    document.querySelector('#eyesclosed_img').setAttribute('src', localStorage.getItem('ftEyesClosed'))
+}
+
+if (localStorage.getItem('ftMouth')) {
+    document.querySelector('#mouth_img').setAttribute('src', localStorage.getItem('ftMouth'))
+}
+
+if (localStorage.getItem('ftMouthOpen')) {
+    document.querySelector('#mouthopen_img').setAttribute('src', localStorage.getItem('ftMouthOpen'))
+}
+
+if (localStorage.getItem('ftFace')) {
+    document.querySelector('#face_img').setAttribute('src', localStorage.getItem('ftFace'))
+}
+
+if (localStorage.getItem('ftBody')) {
+    document.querySelector('#body_img').setAttribute('src', localStorage.getItem('ftBody'))
+}
+
+if (localStorage.getItem('ftBack')) {
+    document.querySelector('#back_img').setAttribute('src', localStorage.getItem('ftBack'))
+}
+
 document.querySelector('#bang').addEventListener('input', function(e) {
     document.querySelector('#bang_img').setAttribute('src', e.target.value)
 })
