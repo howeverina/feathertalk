@@ -10,6 +10,12 @@ if (localStorage.getItem('ftRig')) {
   document.querySelector('#rig').value=rig
 }
 
+var color = '#00ff00'
+if (localStorage.getItem('ftColor')) {
+  color = localStorage.getItem('ftColor')
+  document.querySelector('#color').value=color
+}
+
 var interval = 1500
 var length = parseInt(interval/20)
 var intervals = Array.from({ length }, (_, k) => 0 + k * 20);
@@ -31,6 +37,12 @@ document.querySelector('#threshold').addEventListener('change', function(e){
 document.querySelector('#rig').addEventListener('change', function(e){
   rig = e.target.value
   localStorage.setItem('ftRig', rig)
+})
+
+document.querySelector('#color').addEventListener('change', function(e){
+  document.body.setAttribute('style', `background: ${e.target.value};`)
+  color = e.target.value
+  localStorage.setItem('ftColor', color)
 })
 
 document.querySelector('#interval').addEventListener('change', function(e){
