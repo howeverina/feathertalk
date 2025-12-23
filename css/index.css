@@ -61,14 +61,18 @@ body {
     gap: 5px;
 }
 
-#form1 {
+.form {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
     row-gap: 15px;
     column-gap: 10px;
 }
 
-#form1 > div > img {
+.form:not(.activated) {
+    display: none;
+}
+
+.form > div > img {
     width: 100%;
     border-radius: 10px;
     border: 1px solid #eee;
@@ -101,4 +105,23 @@ a {
 ul, .small {
     font-size: 0.8em;
     color: #ccc;
+}
+
+#tablist {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    gap: 10px;
+}
+
+#tablist > div.selected {
+    background-color: #86D7FF;
+    color: white;
+}
+
+#tablist > div {
+    border-radius: 10px;
+    background-color: white;
+    color: #86D7FF;
+    text-align: center;
+    border: 1px solid #eee;
 }

@@ -52,49 +52,82 @@ document.querySelector('#interval').addEventListener('change', function(e){
   location.href=location.href;
 })
 
-var ftBang = 'assets/bang.png'
+var ftBangArray = new Array(10).fill('assets/bang.png')
 if (localStorage.getItem('ftBang')) {
-    ftBang = localStorage.getItem('ftBang')
-}
-var ftEyes = 'assets/eyes.png'
-if (localStorage.getItem('ftEyes')) {
-    ftEyes = localStorage.getItem('ftEyes')
-}
-var ftEyesClosed = 'assets/eyesclosed.png'
-if (localStorage.getItem('ftEyesClosed')) {
-    ftEyesClosed = localStorage.getItem('ftEyesClosed')
-}
-var ftMouth = 'assets/mouth.png'
-if (localStorage.getItem('ftMouth')) {
-    ftMouth = localStorage.getItem('ftMouth')
-}
-var ftMouthOpen = 'assets/mouthopen.png'
-if (localStorage.getItem('ftMouthOpen')) {
-    ftMouthOpen = localStorage.getItem('ftMouthOpen')
-}
-var ftFace = 'assets/face.png'
-if (localStorage.getItem('ftFace')) {
-    ftFace = localStorage.getItem('ftFace')
-}
-var ftBody = 'assets/body.png'
-if (localStorage.getItem('ftBody')) {
-    ftBody = localStorage.getItem('ftBody')
-}
-var ftBack = 'assets/back.png'
-if (localStorage.getItem('ftBack')) {
-    ftBack = localStorage.getItem('ftBack')
+    ftBangArray = JSON.parse(localStorage.getItem('ftBang'))
 }
 
-document.querySelector('#bangl').setAttribute('src', ftBang)
-document.querySelector('#eyesl').setAttribute('src', ftEyes)
-document.querySelector('#mouthl').setAttribute('src', ftMouth)
-document.querySelector('#facel').setAttribute('src', ftFace)
-document.querySelector('#bangr').setAttribute('src', ftBang)
-document.querySelector('#eyesr').setAttribute('src', ftEyes)
-document.querySelector('#mouthr').setAttribute('src', ftMouth)
-document.querySelector('#facer').setAttribute('src', ftFace)
-document.querySelector('#body').setAttribute('src', ftBody)
-document.querySelector('#back').setAttribute('src', ftBack)
+var ftEyesArray = new Array(10).fill('assets/eyes.png')
+if (localStorage.getItem('ftEyes')) {
+    ftEyesArray = JSON.parse(localStorage.getItem('ftEyes'))
+}
+
+var ftEyesClosedArray = new Array(10).fill('assets/eyesclosed.png')
+if (localStorage.getItem('ftEyesClosed')) {
+    ftEyesClosedArray = JSON.parse(localStorage.getItem('ftEyesClosed'))
+}
+
+var ftMouthArray = new Array(10).fill('assets/mouth.png')
+if (localStorage.getItem('ftMouth')) {
+    ftMouthArray = JSON.parse(localStorage.getItem('ftMouth'))
+}
+
+var ftMouthOpenArray = new Array(10).fill('assets/mouthopen.png')
+if (localStorage.getItem('ftMouthOpen')) {
+    ftMouthOpenArray = JSON.parse(localStorage.getItem('ftMouthOpen'))
+}
+
+var ftFaceArray = new Array(10).fill('assets/face.png')
+if (localStorage.getItem('ftFace')) {
+    ftFaceArray = JSON.parse(localStorage.getItem('ftFace'))
+}
+
+var ftBodyArray = new Array(10).fill('assets/body.png')
+if (localStorage.getItem('ftBody')) {
+    ftBodyArray = JSON.parse(localStorage.getItem('ftBody'))
+}
+
+var ftBackArray = new Array(10).fill('assets/back.png')
+if (localStorage.getItem('ftBack')) {
+    ftBackArray = JSON.parse(localStorage.getItem('ftBack'))
+}
+
+document.querySelector('#bangl').setAttribute('src', ftBangArray[0])
+document.querySelector('#eyesl').setAttribute('src', ftEyesArray[0])
+document.querySelector('#mouthl').setAttribute('src', ftMouthArray[0])
+document.querySelector('#facel').setAttribute('src', ftFaceArray[0])
+document.querySelector('#bangr').setAttribute('src', ftBangArray[0])
+document.querySelector('#eyesr').setAttribute('src', ftEyesArray[0])
+document.querySelector('#mouthr').setAttribute('src', ftMouthArray[0])
+document.querySelector('#facer').setAttribute('src', ftFaceArray[0])
+document.querySelector('#body').setAttribute('src', ftBodyArray[0])
+document.querySelector('#back').setAttribute('src', ftBackArray[0])
+let ftMouth = ftMouthArray[0]
+let ftMouthOpen = ftMouthOpenArray[0]
+let ftEyes = ftEyesArray[0]
+let ftEyesClosed = ftEyesClosedArray[0]
+
+for (let i=0; i<10; i++) {
+  window.addEventListener('keydown', function(e) {
+    if (e.key == `${(i+1)%10}`) {
+      document.querySelector('#bangl').setAttribute('src', ftBangArray[i])
+      document.querySelector('#eyesl').setAttribute('src', ftEyesArray[i])
+      document.querySelector('#mouthl').setAttribute('src', ftMouthArray[i])
+      document.querySelector('#facel').setAttribute('src', ftFaceArray[i])
+      document.querySelector('#bangr').setAttribute('src', ftBangArray[i])
+      document.querySelector('#eyesr').setAttribute('src', ftEyesArray[i])
+      document.querySelector('#mouthr').setAttribute('src', ftMouthArray[i])
+      document.querySelector('#facer').setAttribute('src', ftFaceArray[i])
+      document.querySelector('#body').setAttribute('src', ftBodyArray[i])
+      document.querySelector('#back').setAttribute('src', ftBackArray[i])
+
+      ftMouth = ftMouthArray[i]
+      ftMouthOpen = ftMouthOpenArray[i]
+      ftEyes = ftEyesArray[i]
+      ftEyesClosed = ftEyesClosedArray[i]
+    }
+  })
+}
 
 async function audio () {
   let volumeCallback = null;

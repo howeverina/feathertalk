@@ -1,107 +1,223 @@
 if (localStorage.getItem('ftBang')) {
-    document.querySelector('#bang_img').setAttribute('src', localStorage.getItem('ftBang'))
+    if (localStorage.getItem('ftBang')[0]!='[') {
+        localStorage.setItem('ftBang', `${JSON.stringify(new Array(10).fill(localStorage.getItem('ftBang')))}`)
+    }
+    for (let i=0; i<10; i++){
+        document.querySelector(`#bang_img${(i+1)%10}`).setAttribute('src', JSON.parse(localStorage.getItem('ftBang'))[i])
+    }
 } else {
-    document.querySelector('#bang_img').setAttribute('src', 'assets/bang.png')
+    for (let i=0; i<10; i++){
+        document.querySelector(`#bang_img${(i+1)%10}`).setAttribute('src', 'assets/bang.png')
+    }
 }
 
 if (localStorage.getItem('ftEyes')) {
-    document.querySelector('#eyes_img').setAttribute('src', localStorage.getItem('ftEyes'))
+    if (localStorage.getItem('ftEyes')[0]!='[') {
+        localStorage.setItem('ftEyes', `${JSON.stringify(new Array(10).fill(localStorage.getItem('ftEyes')))}`)
+    }
+    for (let i=0; i<10; i++){
+        document.querySelector(`#eyes_img${(i+1)%10}`).setAttribute('src', JSON.parse(localStorage.getItem('ftEyes'))[i])
+    }
 } else {
-    document.querySelector('#eyes_img').setAttribute('src', 'assets/eyes.png')
+    for (let i=0; i<10; i++){
+        document.querySelector(`#eyes_img${(i+1)%10}`).setAttribute('src', 'assets/eyes.png')
+    }
 }
 
 if (localStorage.getItem('ftEyesClosed')) {
-    document.querySelector('#eyesclosed_img').setAttribute('src', localStorage.getItem('ftEyesClosed'))
+    if (localStorage.getItem('ftEyesClosed')[0]!='[') {
+        localStorage.setItem('ftEyesClosed', `${JSON.stringify(new Array(10).fill(localStorage.getItem('ftEyesClosed')))}`)
+    }
+    for (let i=0; i<10; i++){
+        document.querySelector(`#eyesclosed_img${(i+1)%10}`).setAttribute('src', JSON.parse(localStorage.getItem('ftEyesClosed'))[i])
+    }
 } else {
-    document.querySelector('#eyesclosed_img').setAttribute('src', 'assets/eyesclosed.png')
+    for (let i=0; i<10; i++){
+        document.querySelector(`#eyesclosed_img${(i+1)%10}`).setAttribute('src', 'assets/eyesclosed.png')
+    }
 }
 
 if (localStorage.getItem('ftMouth')) {
-    document.querySelector('#mouth_img').setAttribute('src', localStorage.getItem('ftMouth'))
+    if (localStorage.getItem('ftMouth')[0]!='[') {
+        localStorage.setItem('ftMouth', `${JSON.stringify(new Array(10).fill(localStorage.getItem('ftMouth')))}`)
+    }
+    for (let i=0; i<10; i++){
+        document.querySelector(`#mouth_img${(i+1)%10}`).setAttribute('src', JSON.parse(localStorage.getItem('ftMouth'))[i])
+    }
 } else {
-    document.querySelector('#mouth_img').setAttribute('src', 'assets/mouth.png')
+    for (let i=0; i<10; i++){
+        document.querySelector(`#mouth_img${(i+1)%10}`).setAttribute('src', 'assets/mouth.png')
+    }
 }
 
 if (localStorage.getItem('ftMouthOpen')) {
-    document.querySelector('#mouthopen_img').setAttribute('src', localStorage.getItem('ftMouthOpen'))
+    if (localStorage.getItem('ftMouthOpen')[0]!='[') {
+        localStorage.setItem('ftMouthOpen', `${JSON.stringify(new Array(10).fill(localStorage.getItem('ftMouthOpen')))}`)
+    }
+    for (let i=0; i<10; i++){
+        document.querySelector(`#mouthopen_img${(i+1)%10}`).setAttribute('src', JSON.parse(localStorage.getItem('ftMouthOpen'))[i])
+    }
 } else {
-    document.querySelector('#mouthopen_img').setAttribute('src', 'assets/mouthopen.png')
+    for (let i=0; i<10; i++){
+        document.querySelector(`#mouthopen_img${(i+1)%10}`).setAttribute('src', 'assets/mouthopen.png')
+    }
 }
 
 if (localStorage.getItem('ftFace')) {
-    document.querySelector('#face_img').setAttribute('src', localStorage.getItem('ftFace'))
+    if (localStorage.getItem('ftFace')[0]!='[') {
+        localStorage.setItem('ftFace', `${JSON.stringify(new Array(10).fill(localStorage.getItem('ftFace')))}`)
+    }
+    for (let i=0; i<10; i++){
+        document.querySelector(`#face_img${(i+1)%10}`).setAttribute('src', JSON.parse(localStorage.getItem('ftFace'))[i])
+    }
 } else {
-    document.querySelector('#face_img').setAttribute('src', 'assets/face.png')
+    for (let i=0; i<10; i++){
+        document.querySelector(`#face_img${(i+1)%10}`).setAttribute('src', 'assets/face.png')
+    }
 }
 
 if (localStorage.getItem('ftBody')) {
-    document.querySelector('#body_img').setAttribute('src', localStorage.getItem('ftBody'))
+    if (localStorage.getItem('ftBody')[0]!='[') {
+        localStorage.setItem('ftBody', `${JSON.stringify(new Array(10).fill(localStorage.getItem('ftBody')))}`)
+    }
+    for (let i=0; i<10; i++){
+        document.querySelector(`#body_img${(i+1)%10}`).setAttribute('src', JSON.parse(localStorage.getItem('ftBody'))[i])
+    }
 } else {
-    document.querySelector('#body_img').setAttribute('src', 'assets/body.png')
+    for (let i=0; i<10; i++){
+        document.querySelector(`#body_img${(i+1)%10}`).setAttribute('src', 'assets/body.png')
+    }
 }
 
 if (localStorage.getItem('ftBack')) {
-    document.querySelector('#back_img').setAttribute('src', localStorage.getItem('ftBack'))
+    if (localStorage.getItem('ftBack')[0]!='[') {
+        localStorage.setItem('ftBack', `${JSON.stringify(new Array(10).fill(localStorage.getItem('ftBack')))}`)
+    }
+    for (let i=0; i<10; i++){
+        document.querySelector(`#back_img${(i+1)%10}`).setAttribute('src', JSON.parse(localStorage.getItem('ftBack'))[i])
+    }
 } else {
-    document.querySelector('#back_img').setAttribute('src', 'assets/back.png')
+    for (let i=0; i<10; i++){
+        document.querySelector(`#back_img${(i+1)%10}`).setAttribute('src', 'assets/back.png')
+    }
 }
 
-document.querySelector('#bang').addEventListener('input', function(e) {
-    document.querySelector('#bang_img').setAttribute('src', e.target.value)
-})
+for (let i=0; i<10; i++){
+    document.querySelector(`#bang${i}`).addEventListener('input', function(e){
+        document.querySelector(`#bang_img${i}`).setAttribute('src', e.target.value)
+    })
+}
 
-document.querySelector('#eyes').addEventListener('input', function(e) {
-    document.querySelector('#eyes_img').setAttribute('src', e.target.value)
-})
+for (let i=0; i<10; i++){
+    document.querySelector(`#eyes${i}`).addEventListener('input', function(e){
+        document.querySelector(`#eyes_img${i}`).setAttribute('src', e.target.value)
+    })
+}
 
-document.querySelector('#eyesclosed').addEventListener('input', function(e) {
-    document.querySelector('#eyesclosed_img').setAttribute('src', e.target.value)
-})
+for (let i=0; i<10; i++){
+    document.querySelector(`#eyesclosed${i}`).addEventListener('input', function(e){
+        document.querySelector(`#eyesclosed_img${i}`).setAttribute('src', e.target.value)
+    })
+}
 
-document.querySelector('#mouth').addEventListener('input', function(e) {
-    document.querySelector('#mouth_img').setAttribute('src', e.target.value)
-})
+for (let i=0; i<10; i++){
+    document.querySelector(`#mouth${i}`).addEventListener('input', function(e){
+        document.querySelector(`#mouth_img${i}`).setAttribute('src', e.target.value)
+    })
+}
 
-document.querySelector('#mouthopen').addEventListener('input', function(e) {
-    document.querySelector('#mouthopen_img').setAttribute('src', e.target.value)
-})
+for (let i=0; i<10; i++){
+    document.querySelector(`#mouthopen${i}`).addEventListener('input', function(e){
+        document.querySelector(`#mouthopen_img${i}`).setAttribute('src', e.target.value)
+    })
+}
 
-document.querySelector('#face').addEventListener('input', function(e) {
-    document.querySelector('#face_img').setAttribute('src', e.target.value)
-})
+for (let i=0; i<10; i++){
+    document.querySelector(`#face${i}`).addEventListener('input', function(e){
+        document.querySelector(`#face_img${i}`).setAttribute('src', e.target.value)
+    })
+}
 
-document.querySelector('#body').addEventListener('input', function(e) {
-    document.querySelector('#body_img').setAttribute('src', e.target.value)
-})
+for (let i=0; i<10; i++){
+    document.querySelector(`#body${i}`).addEventListener('input', function(e){
+        document.querySelector(`#body_img${i}`).setAttribute('src', e.target.value)
+    })
+}
 
-document.querySelector('#back').addEventListener('input', function(e) {
-    document.querySelector('#back_img').setAttribute('src', e.target.value)
-})
+for (let i=0; i<10; i++){
+    document.querySelector(`#back${i}`).addEventListener('input', function(e){
+        document.querySelector(`#back_img${i}`).setAttribute('src', e.target.value)
+    })
+}
+
+for (let i=0; i<10; i++){
+    document.querySelector(`#tab${i}`).addEventListener('click', function(e){
+        if (document.querySelector(`#form${i}`)) {
+            document.querySelector('.selected').classList.remove('selected')
+            document.querySelector('.activated').classList.remove('activated')
+            document.querySelector(`#tab${i}`).classList.add('selected')
+            document.querySelector(`#form${i}`).classList.add('activated')
+        }
+    })
+}
 
 document.querySelector('#submit').addEventListener('click',function(e){
-    if (document.querySelector('#bang').value || !localStorage.getItem('ftBang')) {
-       localStorage.setItem('ftBang', document.querySelector('#bang').value)
+
+    if (!localStorage.getItem('ftBang')) {
+        let bangArray = new Array(10)
+        for (let i=0; i<10; i++){
+            bangArray[i] = document.querySelector(`#bang${(i+1)%10}`).value?document.querySelector(`#bang${(i+1)%10}`).value:'assets/bang.png'
+        }
+        localStorage.setItem('ftBang', JSON.stringify(bangArray))
     }
-    if (document.querySelector('#eyes').value || !localStorage.getItem('ftEyes')) {
-        localStorage.setItem('ftEyes', document.querySelector('#eyes').value)
+    if (!localStorage.getItem('ftEyes')) {
+        let bangArray = new Array(10)
+        for (let i=0; i<10; i++){
+            bangArray[i] = document.querySelector(`#eyes${(i+1)%10}`).value?document.querySelector(`#eyes${(i+1)%10}`).value:'assets/eyes.png'
+        }
+        localStorage.setItem('ftEyes', JSON.stringify(bangArray))
     }
-    if (document.querySelector('#eyesclosed').value || !localStorage.getItem('ftEyesClosed')) {
-        localStorage.setItem('ftEyesClosed', document.querySelector('#eyesclosed').value)
+    if (!localStorage.getItem('ftEyesClosed')) {
+        let bangArray = new Array(10)
+        for (let i=0; i<10; i++){
+            bangArray[i] = document.querySelector(`#eyesclosed${(i+1)%10}`).value?document.querySelector(`#eyesclosed${(i+1)%10}`).value:'assets/eyesclosed.png'
+        }
+        localStorage.setItem('ftEyesClosed', JSON.stringify(bangArray))
     }
-    if (document.querySelector('#mouth').value || !localStorage.getItem('ftMouth')) {
-        localStorage.setItem('ftMouth', document.querySelector('#mouth').value)
+    if (!localStorage.getItem('ftMouth')) {
+        let bangArray = new Array(10)
+        for (let i=0; i<10; i++){
+            bangArray[i] = document.querySelector(`#mouth${(i+1)%10}`).value?document.querySelector(`#mouth${(i+1)%10}`).value:'assets/mouth.png'
+        }
+        localStorage.setItem('ftMouth', JSON.stringify(bangArray))
     }
-    if (document.querySelector('#mouthopen').value || !localStorage.getItem('ftMouthOpen')) {
-        localStorage.setItem('ftMouthOpen', document.querySelector('#mouthopen').value)
+    if (!localStorage.getItem('ftMouthOpen')) {
+        let bangArray = new Array(10)
+        for (let i=0; i<10; i++){
+            bangArray[i] = document.querySelector(`#mouthopen${(i+1)%10}`).value?document.querySelector(`#mouthopen${(i+1)%10}`).value:'assets/mouthopen.png'
+        }
+        localStorage.setItem('ftMouthOpen', JSON.stringify(bangArray))
     }
-    if (document.querySelector('#face').value || !localStorage.getItem('ftFace')) {
-        localStorage.setItem('ftFace', document.querySelector('#face').value)
+    if (!localStorage.getItem('ftFace')) {
+        let bangArray = new Array(10)
+        for (let i=0; i<10; i++){
+            bangArray[i] = document.querySelector(`#face${(i+1)%10}`).value?document.querySelector(`#face${(i+1)%10}`).value:'assets/face.png'
+        }
+        localStorage.setItem('ftFace', JSON.stringify(bangArray))
     }
-    if (document.querySelector('#body').value || !localStorage.getItem('ftBody')) {
-        localStorage.setItem('ftBody', document.querySelector('#body').value)
+    if (!localStorage.getItem('ftBody')) {
+        let bangArray = new Array(10)
+        for (let i=0; i<10; i++){
+            bangArray[i] = document.querySelector(`#body${(i+1)%10}`).value?document.querySelector(`#body${(i+1)%10}`).value:'assets/body.png'
+        }
+        localStorage.setItem('ftBody', JSON.stringify(bangArray))
     }
-    if (document.querySelector('#back').value || !localStorage.getItem('ftBack')) {
-        localStorage.setItem('ftBack', document.querySelector('#back').value)
+    if (!localStorage.getItem('ftBack')) {
+        let bangArray = new Array(10)
+        for (let i=0; i<10; i++){
+            bangArray[i] = document.querySelector(`#back${(i+1)%10}`).value?document.querySelector(`#back${(i+1)%10}`).value:'assets/back.png'
+        }
+        localStorage.setItem('ftBack', JSON.stringify(bangArray))
     }
 
     location.href = location.origin + '/live.html'
