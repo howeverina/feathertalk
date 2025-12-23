@@ -163,62 +163,46 @@ for (let i=0; i<10; i++){
 
 document.querySelector('#submit').addEventListener('click',function(e){
 
-    if (!localStorage.getItem('ftBang')) {
         let bangArray = new Array(10)
         for (let i=0; i<10; i++){
             bangArray[i] = document.querySelector(`#bang${(i+1)%10}`).value?document.querySelector(`#bang${(i+1)%10}`).value:'assets/bang.png'
         }
         localStorage.setItem('ftBang', JSON.stringify(bangArray))
-    }
-    if (!localStorage.getItem('ftEyes')) {
-        let bangArray = new Array(10)
+        let eyesArray = new Array(10)
         for (let i=0; i<10; i++){
-            bangArray[i] = document.querySelector(`#eyes${(i+1)%10}`).value?document.querySelector(`#eyes${(i+1)%10}`).value:'assets/eyes.png'
+            eyesArray[i] = document.querySelector(`#eyes${(i+1)%10}`).value?document.querySelector(`#eyes${(i+1)%10}`).value:'assets/eyes.png'
         }
-        localStorage.setItem('ftEyes', JSON.stringify(bangArray))
-    }
-    if (!localStorage.getItem('ftEyesClosed')) {
-        let bangArray = new Array(10)
+        localStorage.setItem('ftEyes', JSON.stringify(eyesArray))
+        let eyesClosedArray = new Array(10)
         for (let i=0; i<10; i++){
-            bangArray[i] = document.querySelector(`#eyesclosed${(i+1)%10}`).value?document.querySelector(`#eyesclosed${(i+1)%10}`).value:'assets/eyesclosed.png'
+            eyesClosedArray[i] = document.querySelector(`#eyesclosed${(i+1)%10}`).value?document.querySelector(`#eyesclosed${(i+1)%10}`).value:'assets/eyesclosed.png'
         }
-        localStorage.setItem('ftEyesClosed', JSON.stringify(bangArray))
-    }
-    if (!localStorage.getItem('ftMouth')) {
-        let bangArray = new Array(10)
+        localStorage.setItem('ftEyesClosed', JSON.stringify(eyesClosedArray))
+        let mouthArray = new Array(10)
         for (let i=0; i<10; i++){
-            bangArray[i] = document.querySelector(`#mouth${(i+1)%10}`).value?document.querySelector(`#mouth${(i+1)%10}`).value:'assets/mouth.png'
+            mouthArray[i] = document.querySelector(`#mouth${(i+1)%10}`).value?document.querySelector(`#mouth${(i+1)%10}`).value:'assets/mouth.png'
         }
-        localStorage.setItem('ftMouth', JSON.stringify(bangArray))
-    }
-    if (!localStorage.getItem('ftMouthOpen')) {
-        let bangArray = new Array(10)
+        localStorage.setItem('ftMouth', JSON.stringify(mouthArray))
+        let mouthOpenArray = new Array(10)
         for (let i=0; i<10; i++){
-            bangArray[i] = document.querySelector(`#mouthopen${(i+1)%10}`).value?document.querySelector(`#mouthopen${(i+1)%10}`).value:'assets/mouthopen.png'
+            mouthOpenArray[i] = document.querySelector(`#mouthopen${(i+1)%10}`).value?document.querySelector(`#mouthopen${(i+1)%10}`).value:'assets/mouthopen.png'
         }
-        localStorage.setItem('ftMouthOpen', JSON.stringify(bangArray))
-    }
-    if (!localStorage.getItem('ftFace')) {
-        let bangArray = new Array(10)
+        localStorage.setItem('ftMouthOpen', JSON.stringify(mouthOpenArray))
+        let faceArray = new Array(10)
         for (let i=0; i<10; i++){
-            bangArray[i] = document.querySelector(`#face${(i+1)%10}`).value?document.querySelector(`#face${(i+1)%10}`).value:'assets/face.png'
+            faceArray[i] = document.querySelector(`#face${(i+1)%10}`).value?document.querySelector(`#face${(i+1)%10}`).value:'assets/face.png'
         }
-        localStorage.setItem('ftFace', JSON.stringify(bangArray))
-    }
-    if (!localStorage.getItem('ftBody')) {
-        let bangArray = new Array(10)
+        localStorage.setItem('ftFace', JSON.stringify(faceArray))
+        let bodyArray = new Array(10)
         for (let i=0; i<10; i++){
-            bangArray[i] = document.querySelector(`#body${(i+1)%10}`).value?document.querySelector(`#body${(i+1)%10}`).value:'assets/body.png'
+            bodyArray[i] = document.querySelector(`#body${(i+1)%10}`).value?document.querySelector(`#body${(i+1)%10}`).value:'assets/body.png'
         }
-        localStorage.setItem('ftBody', JSON.stringify(bangArray))
-    }
-    if (!localStorage.getItem('ftBack')) {
-        let bangArray = new Array(10)
+        localStorage.setItem('ftBody', JSON.stringify(bodyArray))
+        let backArray = new Array(10)
         for (let i=0; i<10; i++){
-            bangArray[i] = document.querySelector(`#back${(i+1)%10}`).value?document.querySelector(`#back${(i+1)%10}`).value:'assets/back.png'
+            backArray[i] = document.querySelector(`#back${(i+1)%10}`).value?document.querySelector(`#back${(i+1)%10}`).value:'assets/back.png'
         }
-        localStorage.setItem('ftBack', JSON.stringify(bangArray))
-    }
+        localStorage.setItem('ftBack', JSON.stringify(backArray))
 
     location.href = location.origin + '/live.html'
 })
