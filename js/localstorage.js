@@ -193,7 +193,7 @@ document.querySelector('#submit').addEventListener('click',function(e){
         localStorage.setItem('ftMouth', JSON.stringify(mouthArray))
         let mouthOpenArray = new Array(10)
         for (let i=0; i<10; i++){
-            mouthOpenArray[i] = document.querySelector(`#mouthopen${(i+1)%10}`).value?document.querySelector(`#mouthopen${(i+1)%10}`).value:JSON.parse(localStorage.getItem('ftMouthOpne'))[i]
+            mouthOpenArray[i] = document.querySelector(`#mouthopen${(i+1)%10}`).value?document.querySelector(`#mouthopen${(i+1)%10}`).value:JSON.parse(localStorage.getItem('ftMouthOpen'))[i]
         }
         localStorage.setItem('ftMouthOpen', JSON.stringify(mouthOpenArray))
         let faceArray = new Array(10)
