@@ -259,44 +259,65 @@ async function audio () {
   
 audio()
 
+let lastX = 0
+let lastY = 0
+var stiffness = 0.07; // 강도 (높을수록 빠름)
+var damping = 0.8;   // 감쇠 (낮을수록 더 많이 출렁임)
+let X = lastX
+let Y = lastX
+
 document.addEventListener('mousemove',function(e){
     clearInterval(autoRig)
 
-    document.querySelector('#back').setAttribute('style', `top: ${(5 - (e.clientY / document.body.clientHeight) * 10)*rig/100}px`)
+    X = e.clientX
+    Y = e.clientY
+    velocity = (lastX - X) * stiffness * damping;
+    
+    var squashStretchM = Math.abs(velocity) * 0.0005; // 0.1은 강도 조절용
+    var currentScaleYM = 1 + 2*squashStretchM; // 위아래로 납작해짐
+    var currentScaleNegYM = 1 - 2*squashStretchM; // 위아래로 납작해짐
+    var currentScaleXM = 1 - 4* squashStretchM; // 좌우로 늘어남 (부피 유지)
+    var currentScaleNegXM = 1 + 4* squashStretchM; // 좌우로 늘어남 (부피 유지)
+
+    document.querySelector('#back').setAttribute('style', `height: ${100*currentScaleYM}dvh; left:min(${50*document.body.clientWidth - 50*currentScaleXM}vw, ${50*document.body.clientWidth - 50*currentScaleXM}dvh), width: min(${100*currentScaleXM}vw, ${100*currentScaleXM}dvh); top: ${(5 - (Y / document.body.clientHeight) * 10)*rig/100}px;`)
 
       document.querySelector('#bangdivl').setAttribute('style', `width: min(${50 + (e.clientX - document.body.clientWidth/2)/document.body.clientWidth*5*rig/50}vw, ${50 + (e.clientX - document.body.clientWidth/2)/document.body.clientWidth*5*rig/50}dvh);`)
 
       document.querySelector('#bangdivr').setAttribute('style', `width: min(${50 - (e.clientX - document.body.clientWidth/2)/document.body.clientWidth*5*rig/50}vw, ${50 - (e.clientX - document.body.clientWidth/2)/document.body.clientWidth*5*rig/50}dvh); left: min(${50 + (e.clientX - document.body.clientWidth/2)/document.body.clientWidth*5*rig/50}vw, ${50 + (e.clientX - document.body.clientWidth/2)/document.body.clientWidth*5*rig/50}dvh);`)
 
-      document.querySelector('#bangl').setAttribute('style', `width: min(${100 + (e.clientX - document.body.clientWidth/2)/document.body.clientWidth*20*rig/100}vw, ${100 + (e.clientX - document.body.clientWidth/2)/document.body.clientWidth*20*rig/100}dvh); top: ${(-10 + (e.clientY / document.body.clientHeight) * 20)*rig/100}px;`)
+      document.querySelector('#bangl').setAttribute('style', `height: ${100*currentScaleYM}dvh; width: min(${(100 + (X - document.body.clientWidth/2)/document.body.clientWidth*20*rig/100)*currentScaleNegXM}vw, ${(100 + (X - document.body.clientWidth/2)/document.body.clientWidth*20*rig/100)*currentScaleNegXM}dvh); top: ${(-10 + (Y / document.body.clientHeight) * 20)*rig/100}px;`)
 
-      document.querySelector('#bangr').setAttribute('style', `width: min(${100 - (e.clientX - document.body.clientWidth/2)/document.body.clientWidth*20*rig/100}vw, ${100 - (e.clientX - document.body.clientWidth/2)/document.body.clientWidth*20*rig/100}dvh);top: ${(-10 + (e.clientY / document.body.clientHeight) * 20)*rig/100}px;`)
+      document.querySelector('#bangr').setAttribute('style', `height: ${100*currentScaleYM}dvh; width: min(${(100 - (X - document.body.clientWidth/2)/document.body.clientWidth*20*rig/100)*currentScaleXM}vw, ${(100 - (X - document.body.clientWidth/2)/document.body.clientWidth*20*rig/100)*currentScaleXM}dvh);top: ${(-10 + (Y / document.body.clientHeight) * 20)*rig/100}px;`)
       
       document.querySelector('#eyesdivl').setAttribute('style', `width: min(${50 + (e.clientX - document.body.clientWidth/2)/document.body.clientWidth*7.5*rig/50}vw, ${50 + (e.clientX - document.body.clientWidth/2)/document.body.clientWidth*7.5*rig/50}dvh);`)
 
       document.querySelector('#eyesdivr').setAttribute('style', `width: min(${50 - (e.clientX - document.body.clientWidth/2)/document.body.clientWidth*7.5*rig/50}vw, ${50 - (e.clientX - document.body.clientWidth/2)/document.body.clientWidth*7.5*rig/50}dvh); left: min(${50 + (e.clientX - document.body.clientWidth/2)/document.body.clientWidth*7.5*rig/50}vw, ${50 + (e.clientX - document.body.clientWidth/2)/document.body.clientWidth*7.5*rig/50}dvh);`)
 
-      document.querySelector('#eyesl').setAttribute('style', `width: min(${100 + (e.clientX - document.body.clientWidth/2)/document.body.clientWidth*20*rig/100}vw, ${100 + (e.clientX - document.body.clientWidth/2)/document.body.clientWidth*20*rig/100}dvh);top: ${(-15 + (e.clientY / document.body.clientHeight) * 30)*rig/100}px;`)
+      document.querySelector('#eyesl').setAttribute('style', `height: ${100*currentScaleYM}dvh; width: min(${(100 + (X - document.body.clientWidth/2)/document.body.clientWidth*20*rig/100)*currentScaleNegXM}vw, ${(100 + (X - document.body.clientWidth/2)/document.body.clientWidth*20*rig/100)*currentScaleNegXM}dvh);top: ${(-15 + (Y / document.body.clientHeight) * 30)*rig/100}px;`)
 
-      document.querySelector('#eyesr').setAttribute('style', `width: min(${100 - (e.clientX - document.body.clientWidth/2)/document.body.clientWidth*20*rig/100}vw, ${100 - (e.clientX - document.body.clientWidth/2)/document.body.clientWidth*20*rig/100}dvh);top: ${(-15 + (e.clientY / document.body.clientHeight) * 30)*rig/100}px;`)
+      document.querySelector('#eyesr').setAttribute('style', `height: ${100*currentScaleYM}dvh; width: min(${(100 - (X - document.body.clientWidth/2)/document.body.clientWidth*20*rig/100)*currentScaleXM}vw, ${(100 - (X - document.body.clientWidth/2)/document.body.clientWidth*20*rig/100)*currentScaleXM}dvh);top: ${(-15 + (Y / document.body.clientHeight) * 30)*rig/100}px;`)
 
       document.querySelector('#mouthdivl').setAttribute('style', `width: min(${50 + (e.clientX - document.body.clientWidth/2)/document.body.clientWidth*7.5*rig/50}vw, ${50 + (e.clientX - document.body.clientWidth/2)/document.body.clientWidth*7.5*rig/50}dvh);`)
 
       document.querySelector('#mouthdivr').setAttribute('style', `width: min(${50 - (e.clientX - document.body.clientWidth/2)/document.body.clientWidth*7.5*rig/50}vw, ${50 - (e.clientX - document.body.clientWidth/2)/document.body.clientWidth*7.5*rig/50}dvh); left: min(${50 + (e.clientX - document.body.clientWidth/2)/document.body.clientWidth*7.5*rig/50}vw, ${50 + (e.clientX - document.body.clientWidth/2)/document.body.clientWidth*7.5*rig/50}dvh);`)
 
-      document.querySelector('#mouthl').setAttribute('style', `width: min(${100 + (e.clientX - document.body.clientWidth/2)/document.body.clientWidth*20*rig/100}vw, ${100 + (e.clientX - document.body.clientWidth/2)/document.body.clientWidth*20*rig/100}dvh);top: ${(-10 + (e.clientY / document.body.clientHeight) * 20)*rig/100}px;`)
+      document.querySelector('#mouthl').setAttribute('style', `height: ${100*currentScaleYM}dvh; width: min(${100 + (e.clientX - document.body.clientWidth/2)/document.body.clientWidth*20*rig/100}vw, ${100 + (e.clientX - document.body.clientWidth/2)/document.body.clientWidth*20*rig/100}dvh);top: ${(-10 + (e.clientY / document.body.clientHeight) * 20)*rig/100}px;`)
 
-      document.querySelector('#mouthr').setAttribute('style', `width: min(${100 - (e.clientX - document.body.clientWidth/2)/document.body.clientWidth*20*rig/100}vw, ${100 - (e.clientX - document.body.clientWidth/2)/document.body.clientWidth*20*rig/100}dvh);top: ${(-10 + (e.clientY / document.body.clientHeight) * 20)*rig/100}px;`)
+      document.querySelector('#mouthr').setAttribute('style', `height: ${100*currentScaleYM}dvh; width: min(${100 - (e.clientX - document.body.clientWidth/2)/document.body.clientWidth*20*rig/100}vw, ${100 - (e.clientX - document.body.clientWidth/2)/document.body.clientWidth*20*rig/100}dvh);top: ${(-10 + (e.clientY / document.body.clientHeight) * 20)*rig/100}px;`)
 
       document.querySelector('#facedivl').setAttribute('style', `width: min(${50 + (e.clientX - document.body.clientWidth/2)/document.body.clientWidth*7.5*rig/50}vw, ${50 + (e.clientX - document.body.clientWidth/2)/document.body.clientWidth*7.5*rig/50}dvh);`)
 
       document.querySelector('#facedivr').setAttribute('style', `width: min(${50 - (e.clientX - document.body.clientWidth/2)/document.body.clientWidth*7.5*rig/50}vw, ${50 - (e.clientX - document.body.clientWidth/2)/document.body.clientWidth*7.5*rig/50}dvh); left: min(${50 + (e.clientX - document.body.clientWidth/2)/document.body.clientWidth*7.5*rig/50}vw, ${50 + (e.clientX - document.body.clientWidth/2)/document.body.clientWidth*7.5*rig/50}dvh);`)
 
-      document.querySelector('#facel').setAttribute('style', `width: min(${100 + (e.clientX - document.body.clientWidth/2)/document.body.clientWidth*15*rig/100}vw, ${100 + (e.clientX - document.body.clientWidth/2)/document.body.clientWidth*15*rig/100}dvh);top: ${(-5 + (e.clientY / document.body.clientHeight) * 10)*rig/100}px;`)
+      document.querySelector('#facel').setAttribute('style', `height: ${100*currentScaleYM}dvh; width: min(${(100 + (X - document.body.clientWidth/2)/document.body.clientWidth*15*rig/100)*currentScaleNegXM}vw, ${(100 + (X - document.body.clientWidth/2)/document.body.clientWidth*15*rig/100)*currentScaleNegXM}dvh);top: ${(-5 + (Y / document.body.clientHeight) * 10)*rig/100}px;`)
 
-      document.querySelector('#facer').setAttribute('style', `width: min(${100 - (e.clientX - document.body.clientWidth/2)/document.body.clientWidth*15*rig/100}vw, ${100 - (e.clientX - document.body.clientWidth/2)/document.body.clientWidth*15*rig/100}dvh);top: ${(-5 + (e.clientY / document.body.clientHeight) * 10)*rig/100}px;`)
+      document.querySelector('#facer').setAttribute('style', `height: ${100*currentScaleYM}dvh; width: min(${(100 - (X - document.body.clientWidth/2)/document.body.clientWidth*15*rig/100)*currentScaleXM}vw, ${(100 - (X - document.body.clientWidth/2)/document.body.clientWidth*15*rig/100)*currentScaleXM}dvh);top: ${(-5 + (Y / document.body.clientHeight) * 10)*rig/100}px;`)
 
     document.querySelector('#character').setAttribute('style', `transform: rotate(${(e.clientX - document.body.clientWidth/2)/document.body.clientWidth*15*rig/100}deg);`)
+
+
+    lastX = e.clientX
+    lastY = e.clientY
 
     randomX = 0
     randomY = 0
@@ -313,46 +334,59 @@ document.addEventListener('mousemove',function(e){
             now = Date.now();
         }
     }
+      let X = lastRandomX
+      let Y = lastRandomX
+      let velocity = (randomX - X) * stiffness * damping;
     for await (let i of intervals) {
 
       setTimeout(() => {
         
-      var X = lastRandomX + (randomX - lastRandomX) * i / interval
-      var Y = lastRandomY + (randomY - lastRandomY) * i / interval
+      // var t = i / interval;
+      // var elasticT = Math.sin(-13 * (Math.PI / 2) * (t + 1)) * Math.pow(2, -10 * t) + 1;    
+      //var X = lastRandomX + (randomX - lastRandomX) * elasticT;
+      //var Y = lastRandomY + (randomY - lastRandomY) * elasticT;
+      velocity = (velocity + (randomX - X) * stiffness) * damping;
+      X += velocity;
+      Y += velocity;
+      var squashStretch = Math.abs(velocity) * 0.0005; // 0.1은 강도 조절용
+      var currentScaleY = 1 + 0.5*squashStretch; // 위아래로 납작해짐
+      var currentScaleNegY = 1 - 0.5*squashStretch; // 위아래로 납작해짐
+      var currentScaleX = 1 - squashStretch; // 좌우로 늘어남 (부피 유지)
+      var currentScaleNegX = 1 + squashStretch; // 좌우로 늘어남 (부피 유지)
       
-      document.querySelector('#back').setAttribute('style', `top: ${(5 - (Y / document.body.clientHeight) * 10)*rig/100}px`)
+      document.querySelector('#back').setAttribute('style', `height: ${100*currentScaleY}dvh; left:min(${50*document.body.clientWidth - 50*currentScaleX}vw, ${50*document.body.clientWidth - 50*currentScaleX}dvh), width: min(${100*currentScaleX}vw, ${100*currentScaleX}dvh); top: ${(5 - (Y / document.body.clientHeight) * 10)*rig/100}px`)
 
       document.querySelector('#bangdivl').setAttribute('style', `width: min(${50 + (X - document.body.clientWidth/2)/document.body.clientWidth*5*rig/50}vw, ${50 + (X - document.body.clientWidth/2)/document.body.clientWidth*5*rig/50}dvh);`)
 
       document.querySelector('#bangdivr').setAttribute('style', `width: min(${50 - (X - document.body.clientWidth/2)/document.body.clientWidth*5*rig/50}vw, ${50 - (X - document.body.clientWidth/2)/document.body.clientWidth*5*rig/50}dvh); left: min(${50 + (X - document.body.clientWidth/2)/document.body.clientWidth*5*rig/50}vw, ${50 + (X - document.body.clientWidth/2)/document.body.clientWidth*5*rig/50}dvh);`)
 
-      document.querySelector('#bangl').setAttribute('style', `width: min(${100 + (X - document.body.clientWidth/2)/document.body.clientWidth*20*rig/100}vw, ${100 + (X - document.body.clientWidth/2)/document.body.clientWidth*20*rig/100}dvh); top: ${(-10 + (Y / document.body.clientHeight) * 20)*rig/100}px;`)
+      document.querySelector('#bangl').setAttribute('style', `height: ${100*currentScaleY}dvh; width: min(${(100 + (X - document.body.clientWidth/2)/document.body.clientWidth*20*rig/100)*currentScaleNegX}vw, ${(100 + (X - document.body.clientWidth/2)/document.body.clientWidth*20*rig/100)*currentScaleNegX}dvh); top: ${(-10 + (Y / document.body.clientHeight) * 20)*rig/100}px;`)
 
-      document.querySelector('#bangr').setAttribute('style', `width: min(${100 - (X - document.body.clientWidth/2)/document.body.clientWidth*20*rig/100}vw, ${100 - (X - document.body.clientWidth/2)/document.body.clientWidth*20*rig/100}dvh);top: ${(-10 + (Y / document.body.clientHeight) * 20)*rig/100}px;`)
+      document.querySelector('#bangr').setAttribute('style', `height: ${100*currentScaleY}dvh; width: min(${(100 - (X - document.body.clientWidth/2)/document.body.clientWidth*20*rig/100)*currentScaleX}vw, ${(100 - (X - document.body.clientWidth/2)/document.body.clientWidth*20*rig/100)*currentScaleX}dvh);top: ${(-10 + (Y / document.body.clientHeight) * 20)*rig/100}px;`)
       
       document.querySelector('#eyesdivl').setAttribute('style', `width: min(${50 + (X - document.body.clientWidth/2)/document.body.clientWidth*7.5*rig/50}vw, ${50 + (X - document.body.clientWidth/2)/document.body.clientWidth*7.5*rig/50}dvh);`)
 
       document.querySelector('#eyesdivr').setAttribute('style', `width: min(${50 - (X - document.body.clientWidth/2)/document.body.clientWidth*7.5*rig/50}vw, ${50 - (X - document.body.clientWidth/2)/document.body.clientWidth*7.5*rig/50}dvh); left: min(${50 + (X - document.body.clientWidth/2)/document.body.clientWidth*7.5*rig/50}vw, ${50 + (X - document.body.clientWidth/2)/document.body.clientWidth*7.5*rig/50}dvh);`)
 
-      document.querySelector('#eyesl').setAttribute('style', `width: min(${100 + (X - document.body.clientWidth/2)/document.body.clientWidth*20*rig/100}vw, ${100 + (X - document.body.clientWidth/2)/document.body.clientWidth*20*rig/100}dvh);top: ${(-15 + (Y / document.body.clientHeight) * 30)*rig/100}px;`)
+      document.querySelector('#eyesl').setAttribute('style', `height: ${100*currentScaleY}dvh; width: min(${(100 + (X - document.body.clientWidth/2)/document.body.clientWidth*20*rig/100)*currentScaleNegX}vw, ${(100 + (X - document.body.clientWidth/2)/document.body.clientWidth*20*rig/100)*currentScaleNegX}dvh);top: ${(-15 + (Y / document.body.clientHeight) * 30)*rig/100}px;`)
 
-      document.querySelector('#eyesr').setAttribute('style', `width: min(${100 - (X - document.body.clientWidth/2)/document.body.clientWidth*20*rig/100}vw, ${100 - (X - document.body.clientWidth/2)/document.body.clientWidth*20*rig/100}dvh);top: ${(-15 + (Y / document.body.clientHeight) * 30)*rig/100}px;`)
+      document.querySelector('#eyesr').setAttribute('style', `height: ${100*currentScaleY}dvh; width: min(${(100 - (X - document.body.clientWidth/2)/document.body.clientWidth*20*rig/100)*currentScaleX}vw, ${(100 - (X - document.body.clientWidth/2)/document.body.clientWidth*20*rig/100)*currentScaleX}dvh);top: ${(-15 + (Y / document.body.clientHeight) * 30)*rig/100}px;`)
 
       document.querySelector('#mouthdivl').setAttribute('style', `width: min(${50 + (X - document.body.clientWidth/2)/document.body.clientWidth*7.5*rig/50}vw, ${50 + (X - document.body.clientWidth/2)/document.body.clientWidth*7.5*rig/50}dvh);`)
 
       document.querySelector('#mouthdivr').setAttribute('style', `width: min(${50 - (X - document.body.clientWidth/2)/document.body.clientWidth*7.5*rig/50}vw, ${50 - (X - document.body.clientWidth/2)/document.body.clientWidth*7.5*rig/50}dvh); left: min(${50 + (X - document.body.clientWidth/2)/document.body.clientWidth*7.5*rig/50}vw, ${50 + (X - document.body.clientWidth/2)/document.body.clientWidth*7.5*rig/50}dvh);`)
 
-      document.querySelector('#mouthl').setAttribute('style', `width: min(${100 + (X - document.body.clientWidth/2)/document.body.clientWidth*20*rig/100}vw, ${100 + (X - document.body.clientWidth/2)/document.body.clientWidth*20*rig/100}dvh);top: ${(-10 + (Y / document.body.clientHeight) * 20)*rig/100}px;`)
+      document.querySelector('#mouthl').setAttribute('style', `height: ${100*currentScaleY}dvh; width: min(${100 + (X - document.body.clientWidth/2)/document.body.clientWidth*20*rig/100}vw, ${100 + (X - document.body.clientWidth/2)/document.body.clientWidth*20*rig/100}dvh);top: ${(-10 + (Y / document.body.clientHeight) * 20)*rig/100}px;`)
 
-      document.querySelector('#mouthr').setAttribute('style', `width: min(${100 - (X - document.body.clientWidth/2)/document.body.clientWidth*20*rig/100}vw, ${100 - (X - document.body.clientWidth/2)/document.body.clientWidth*20*rig/100}dvh);top: ${(-10 + (Y / document.body.clientHeight) * 20)*rig/100}px;`)
+      document.querySelector('#mouthr').setAttribute('style', `height: ${100*currentScaleY}dvh; width: min(${100 - (X - document.body.clientWidth/2)/document.body.clientWidth*20*rig/100}vw, ${100 - (X - document.body.clientWidth/2)/document.body.clientWidth*20*rig/100}dvh);top: ${(-10 + (Y / document.body.clientHeight) * 20)*rig/100}px;`)
 
       document.querySelector('#facedivl').setAttribute('style', `width: min(${50 + (X - document.body.clientWidth/2)/document.body.clientWidth*7.5*rig/50}vw, ${50 + (X - document.body.clientWidth/2)/document.body.clientWidth*7.5*rig/50}dvh);`)
 
       document.querySelector('#facedivr').setAttribute('style', `width: min(${50 - (X - document.body.clientWidth/2)/document.body.clientWidth*7.5*rig/50}vw, ${50 - (X - document.body.clientWidth/2)/document.body.clientWidth*7.5*rig/50}dvh); left: min(${50 + (X - document.body.clientWidth/2)/document.body.clientWidth*7.5*rig/50}vw, ${50 + (X - document.body.clientWidth/2)/document.body.clientWidth*7.5*rig/50}dvh);`)
 
-      document.querySelector('#facel').setAttribute('style', `width: min(${100 + (X - document.body.clientWidth/2)/document.body.clientWidth*15*rig/100}vw, ${100 + (X - document.body.clientWidth/2)/document.body.clientWidth*15*rig/100}dvh);top: ${(-5 + (Y / document.body.clientHeight) * 10)*rig/100}px;`)
+      document.querySelector('#facel').setAttribute('style', `height: ${100*currentScaleY}dvh; width: min(${(100 + (X - document.body.clientWidth/2)/document.body.clientWidth*15*rig/100)*currentScaleNegX}vw, ${(100 + (X - document.body.clientWidth/2)/document.body.clientWidth*15*rig/100)*currentScaleNegX}dvh);top: ${(-5 + (Y / document.body.clientHeight) * 10)*rig/100}px;`)
 
-      document.querySelector('#facer').setAttribute('style', `width: min(${100 - (X - document.body.clientWidth/2)/document.body.clientWidth*15*rig/100}vw, ${100 - (X - document.body.clientWidth/2)/document.body.clientWidth*15*rig/100}dvh);top: ${(-5 + (Y / document.body.clientHeight) * 10)*rig/100}px;`)
+      document.querySelector('#facer').setAttribute('style', `height: ${100*currentScaleY}dvh; width: min(${(100 - (X - document.body.clientWidth/2)/document.body.clientWidth*15*rig/100)*currentScaleX}vw, ${(100 - (X - document.body.clientWidth/2)/document.body.clientWidth*15*rig/100)*currentScaleX}dvh);top: ${(-5 + (Y / document.body.clientHeight) * 10)*rig/100}px;`)
 
       document.querySelector('#character').setAttribute('style', `transform: rotate(${(X - document.body.clientWidth/2)/document.body.clientWidth*15*rig/100}deg);`)
       }, i*12/20);
