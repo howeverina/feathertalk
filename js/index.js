@@ -201,10 +201,12 @@ async function audio () {
 }
 
   let autoRig = setInterval(async () => {
+    
     var lastRandomX = randomX
     var lastRandomY = randomY
-    randomX = Math.random() * document.body.clientWidth / 3 + document.body.clientWidth / 3
-    randomY = Math.random() * document.body.clientHeight
+    randomX = Math.seedrandom(1) * document.body.clientWidth / 3 + document.body.clientWidth / 3
+    randomY = Math.seedrandom(3) * document.body.clientHeight
+
     function wait(sec) {
         let start = Date.now(), now = start;
         while (now - start < sec) {
@@ -326,8 +328,9 @@ document.addEventListener('mousemove',function(e){
 
     var lastRandomX = randomX?randomX:e.clientX
     var lastRandomY = randomY?randomY:e.clientY
-    randomX = Math.random() * document.body.clientWidth
-    randomY = Math.random() * document.body.clientHeight
+    randomX = Math.random(1) * document.body.clientWidth
+    randomY = Math.random(3) * document.body.clientHeight
+    
     function wait(sec) {
         let start = Date.now(), now = start;
         while (now - start < sec) {
@@ -335,8 +338,9 @@ document.addEventListener('mousemove',function(e){
         }
     }
       let X = lastRandomX
-      let Y = lastRandomX
+      let Y = lastRandomY
       let velocity = (randomX - X) * stiffness * damping;
+      let velocityY = (randomY - Y) * stiffness * damping;
     for await (let i of intervals) {
 
       setTimeout(() => {
@@ -346,8 +350,9 @@ document.addEventListener('mousemove',function(e){
       //var X = lastRandomX + (randomX - lastRandomX) * elasticT;
       //var Y = lastRandomY + (randomY - lastRandomY) * elasticT;
       velocity = (velocity + (randomX - X) * stiffness) * damping;
+      velocityY = (randomY - Y) * stiffness * damping;
       X += velocity;
-      Y += velocity;
+      Y += velocityY;
       var squashStretch = Math.abs(velocity) * 0.0005; // 0.1은 강도 조절용
       var currentScaleY = 1 + 0.5*squashStretch; // 위아래로 납작해짐
       var currentScaleNegY = 1 - 0.5*squashStretch; // 위아래로 납작해짐
