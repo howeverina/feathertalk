@@ -125,3 +125,35 @@ ul, .small {
     text-align: center;
     border: 1px solid #eee;
 }
+
+#wrapper > #v2banner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    flex-wrap: wrap;
+    padding: 14px 18px;
+    border-radius: 10px;
+    margin-bottom: 1rem;
+    background: linear-gradient(90deg, #86D7FF, #a8b8ff);
+    color: white;
+    text-decoration: none;
+}
+
+#v2banner b {
+    font-size: 1.1em;
+}
+
+#v2banner .v2desc {
+    font-size: 0.85em;
+    opacity: 0.95;
+}
+
+#v2banner .v2go {
+    background: white;
+    color: #3fb5ee;
+    font-weight: 700;
+    padding: 6px 14px;
+    border-radius: 10px;
+    white-space: nowrap;
+}
